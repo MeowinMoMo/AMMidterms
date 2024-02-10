@@ -12,24 +12,32 @@ public class Paper : MonoBehaviour
     public float m_currentTime;
     Vector3 direction;
     Player _player;
+    Power ArcPoint;
+    bool hasCalled;
+
+    //Add Projectile Speed
+    int Speed = 8;
 
     private void Start()
     {
         m_currentTime = 0;
         _player = FindObjectOfType<Player>();
+        ArcPoint = FindObjectOfType<Power>();
     }
 
     private void Update()
     {
-        m_currentTime += Time.deltaTime;
+        //Add Speed here
+        m_currentTime += Speed *Time.deltaTime;
         var percentTime = m_currentTime / timeToTake;
         var newPos = BeizeirCurve.QuadraticLerp(_player.FirePoint.position, _player.Power.position, _player.End.position, percentTime);
         paper.position = newPos;
 
-        if (Vector3.Distance(paper.transform.position, _player.End.position) < 0.1f)
+        if (Vector3.Distance(paper.transform.position, _player.End.position) < 0.1f && !hasCalled)
         {
             Destroy(gameObject, 5f);
             Debug.Log("Reached the end");
+            hasCalled = true;
         }
     }
 
@@ -37,5 +45,4 @@ public class Paper : MonoBehaviour
     {
         direction = dir;
     }
-
 }

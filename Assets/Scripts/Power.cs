@@ -9,10 +9,17 @@ public class Power : MonoBehaviour
     public float minYPosition;
 
     private bool movingUp = true;
+    public Transform Player;
+    bool HasCalled;
+
+    private void Start()
+    {
+        HasCalled = false;
+    }
 
     void Update()
     {
-        if (movingUp)
+        /*if (movingUp)
         {
             transform.position += new Vector3(0, speed * Time.deltaTime, 0);
 
@@ -29,6 +36,6 @@ public class Power : MonoBehaviour
             {
                 movingUp = true;
             }
-        }
+        }*/
     }
 }

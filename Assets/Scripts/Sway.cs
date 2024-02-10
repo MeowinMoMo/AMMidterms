@@ -7,6 +7,7 @@ public class Sway : MonoBehaviour
     public float speed;
     public float maxXPosition;
     public float minXPosition;
+    
 
     private bool movingRight = true;
 
